@@ -1,0 +1,72 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+.uv-cache/
+
+# VS Code settings
+.vscode/
+
+# Distribution / packaging
+build/
+dist/
+dist-ssr/
+node_modules/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyright/
+pytestdebug.log
+cover/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+*.local
+
+# Uploads folder (if you don’t want to commit your PDFs)
+chatbot-ollama/uploads/
+
+# Local vector indexes / generated stores
+chatbot-ollama/faiss_index/
+chatbot-ollama/vector_store/
+chatbot-ollama/storage/
+
+# OS files
+.DS_Store
+Thumbs.db
