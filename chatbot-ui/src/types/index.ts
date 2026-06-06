@@ -38,7 +38,9 @@ export interface APIError {
 }
 
 export interface PDFUploaderProps {
-  onUploadSuccess: () => void;
+  onUploadSuccess: (filename: string) => void;
+  compact?: boolean;
+  variant?: 'light' | 'dark';
 }
 
 export interface PDFSelectorProps {
@@ -49,6 +51,10 @@ export interface PDFSelectorProps {
 
 export interface ChatInterfaceProps {
   selectedPdf: string;
+  pdfs: string[];
+  onPdfSelect: (pdfName: string) => void;
   messages: Message[];
   setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+  isAuthenticated: boolean;
+  uploadedCount?: number;
 }

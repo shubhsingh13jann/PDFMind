@@ -1,13 +1,11 @@
-// src/services/api.ts
 import type { UploadResponse, QuestionResponse, PDFListResponse, APIError, LLMProvider } from '../types';
 
-const API_BASE_URL = 'http://127.0.0.1:8000'; // Adjust this to your FastAPI server URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
 const getErrorMessage = (errorData: APIError, fallback: string): string => {
   return errorData.detail || errorData.error || fallback;
 };
 
-// Fetch all PDFs from the backend
 export const fetchPdfs = async (): Promise<string[]> => {
   try {
     const response = await fetch(`${API_BASE_URL}/list_pdfs`);
@@ -24,7 +22,6 @@ export const fetchPdfs = async (): Promise<string[]> => {
   }
 };
 
-// Upload a PDF file to the backend
 export const uploadPdf = async (file: File): Promise<UploadResponse> => {
   try {
     const formData = new FormData();
@@ -40,20 +37,18 @@ export const uploadPdf = async (file: File): Promise<UploadResponse> => {
       throw new Error(getErrorMessage(errorData, `HTTP error! status: ${response.status}`));
     }
 
-    const result: UploadResponse = await response.json();
-    return result;
-    } catch (error) {
-        console.error('Error uploading PDF:', error);
+    return await response.json();
+  } catch (error) {
+    console.error('Error uploading PDF:', error);
 
-        if (error instanceof Error) {
-          throw new Error(error.message || 'Failed to upload PDF');
-        } else {
-          throw new Error('Failed to upload PDF');
-        }
-      }
+    if (error instanceof Error) {
+      throw new Error(error.message || 'Failed to upload PDF');
+    }
+
+    throw new Error('Failed to upload PDF');
+  }
 };
 
-// Ask a question about a specific PDF
 export const askQuestion = async (
   question: string,
   pdfName: string,
@@ -65,11 +60,7 @@ export const askQuestion = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        question: question,
-        pdf_name: pdfName,
-        provider: provider,
-      }),
+      body: JSON.stringify({ question, pdf_name: pdfName, provider }),
     });
 
     if (!response.ok) {
@@ -95,7 +86,6 @@ export const askQuestion = async (
   }
 };
 
-// Health check for the API
 export const healthCheck = async (): Promise<boolean> => {
   try {
     const response = await fetch(`${API_BASE_URL}/`);
