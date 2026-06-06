@@ -1,69 +1,128 @@
-# React + TypeScript + Vite
+# PDF Answer Assistant - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend is a React and TypeScript application for interacting with the PDF Answer Assistant backend. Users can upload PDFs, select a document, choose an answer provider, and ask questions through a clean chat interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Upload PDF files
+- View available uploaded PDFs
+- Ask questions from a selected PDF
+- Choose between supported answer providers
+- Display source pages returned by the backend
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Axios
+- Lucide React
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Make sure the following are installed:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18 or newer
+- npm
+- Backend running at `http://127.0.0.1:8000`
+
+## Installation
+
+From the project root, move into the frontend folder:
+
+```powershell
+cd chatbot-ui
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```powershell
+npm install
 ```
+
+The frontend uses `package.json` for dependency management. The `package-lock.json` file keeps installed versions consistent across machines.
+
+## Running The Frontend
+
+Start the development server:
+
+```powershell
+npm run dev
+```
+
+The frontend will run at:
+
+```text
+http://localhost:5173
+```
+
+Make sure the backend is also running before uploading PDFs or asking questions.
+
+## Build Commands
+
+Create a production build:
+
+```powershell
+npm run build
+```
+
+Preview the production build locally:
+
+```powershell
+npm run preview
+```
+
+Run ESLint:
+
+```powershell
+npm run lint
+```
+
+## Backend Connection
+
+The frontend currently calls the backend API at:
+
+```text
+http://127.0.0.1:8000
+```
+
+If the backend URL changes, update the API base URL in:
+
+```text
+src/services/api.ts
+```
+
+## Available Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Build the app for production |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint |
+
+## Project Structure
+
+```text
+chatbot-ui/
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.ts
+├── tailwind.config.cjs
+├── public/
+└── src/
+    ├── components/
+    ├── services/
+    ├── types/
+    ├── App.tsx
+    └── main.tsx
+```
+
+## Important Notes
+
+- Do not commit `node_modules/`.
+- Do not commit `dist/`.
+- Frontend dependencies should be installed with `npm install`, not `pip`.
+- Keep the backend running while using the frontend locally.
