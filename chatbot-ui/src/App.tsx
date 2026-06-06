@@ -39,13 +39,14 @@ function App(): JSX.Element {
     return guestPdf ? [guestPdf] : [];
   }, [guestPdf, isAuthenticated, pdfs]);
 
-  const loadPdfs = async () => {
-    try {
-      const pdfList = await fetchPdfs();
-      setPdfs(pdfList);
-    } catch (error) {
-      console.error(error);
-    }
+  const loadPdfs = async () => { 
+    try { 
+      const pdfList = await fetchPdfs(); 
+      setPdfs(pdfList); 
+    } 
+    catch (error) { 
+      console.error('Error loading PDFs:', error); 
+    } 
   };
   
   const handlePdfUploaded = (filename: string) => {
@@ -63,19 +64,19 @@ function App(): JSX.Element {
     setMessages([]);
   };
   
-    const handleLogin = (): void => {
-    setIsAuthenticated(true);
-  
-      if (!selectedPdf && pdfs.length > 0) {
-        setSelectedPdf(pdfs[0]);
-      }
-    };
-  
-    const handleLogout = (): void => {
-      setIsAuthenticated(false);
-      setSelectedPdf(guestPdf);
-      setMessages([]);
-    };
+  const handleLogin = (): void => { 
+    setIsAuthenticated(true); 
+    
+    if (!selectedPdf && pdfs.length > 0) { 
+      setSelectedPdf(pdfs[0]); 
+    } 
+  };
+
+  const handleLogout = (): void => {
+    setIsAuthenticated(false);
+    setSelectedPdf(guestPdf);
+    setMessages([]);
+  };
   
   return (
     <div className="h-screen w-screen bg-gradient-to-br from-slate-200 via-slate-100 to-slate-300 p-2">
