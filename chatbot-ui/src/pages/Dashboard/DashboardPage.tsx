@@ -66,11 +66,8 @@ function DashboardPage({
 
               <ChatArea
                 selectedPdf={selectedPdf}
-                pdfs={visiblePdfs}
-                onPdfSelect={setSelectedPdf}
                 messages={messages}
                 setMessages={setMessages}
-                uploadedCount={pdfs.length}
               />
 
             </div>

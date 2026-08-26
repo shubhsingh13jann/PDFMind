@@ -11,12 +11,13 @@ function ChatMessages({
   messages,
   isLoading,
 }: Props) {
-  return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-5 px-6 py-6">
+    return (
+    <div className="flex-1 overflow-y-auto px-8 py-7">
+      <div className="mx-auto max-w-6xl">
 
       {messages.map((message, index) => (
         <MessageBubble
-          key={`${index}`}
+          key={`${message.timestamp.getTime()}-${index}`}
           message={message}
         />
       ))}
@@ -40,6 +41,7 @@ function ChatMessages({
         </div>
       )}
 
+      </div>
     </div>
   );
 }

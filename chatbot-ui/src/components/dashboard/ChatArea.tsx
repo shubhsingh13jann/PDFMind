@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { MessageCircle } from "lucide-react";
-
-import PdfSelector from "./PdfSelector";
+import TopBar from "./TopBar";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
 
@@ -13,22 +11,16 @@ import type {
 
 interface Props {
   selectedPdf: string;
-  pdfs: string[];
-  onPdfSelect: (pdf: string) => void;
   messages: Message[];
   setMessages: React.Dispatch<
     React.SetStateAction<Message[]>
   >;
-  uploadedCount?: number;
 }
 
 function ChatArea({
   selectedPdf,
-  pdfs,
-  onPdfSelect,
   messages,
   setMessages,
-  uploadedCount = 0,
 }: Props) {
 
   const [currentQuestion, setCurrentQuestion] =
@@ -101,66 +93,24 @@ function ChatArea({
   };
 
   return (
-    <div className="flex h-full flex-col">
-
-      {/* Top */}
-
-      <div className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-5">
-
-        <PdfSelector
-          selectedPdf={selectedPdf}
-          pdfs={pdfs}
-          onPdfSelect={onPdfSelect}
-        />
-
-        <div className="rounded-full bg-blue-50 px-4 py-2 text-xs font-medium text-blue-600">
-          Uploaded PDFs: {uploadedCount}
-        </div>
-
-      </div>
-
-      {/* Center */}
+    <main className="flex h-full min-w-0 flex-1 flex-col bg-gradient-to-br from-white via-[#F8F9FF] to-[#F4F1FF]">
+      <TopBar onClearChat={() => setMessages([])} />
 
       <div className="flex-1 overflow-y-auto">
-
         {messages.length === 0 ? (
-
-          <div className="flex h-full items-center justify-center">
-
+          <div className="flex h-full min-h-[420px] items-center justify-center px-8 py-7">
             <div className="text-center">
-
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50">
-
-                <MessageCircle
-                  className="h-10 w-10 text-blue-500"
-                />
-
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-100">
+                <span className="text-2xl text-indigo-500">✦</span>
               </div>
-
-              <h1 className="text-3xl font-semibold text-slate-700">
-                Select a PDF to start chatting
-              </h1>
-
-              <p className="mt-4 text-slate-500">
-                Upload a PDF and begin asking questions.
-              </p>
-
+              <h2 className="text-lg font-semibold text-slate-800">Start a conversation</h2>
+              <p className="mt-1 text-sm text-slate-500">Ask a question about your selected PDF.</p>
             </div>
-
           </div>
-
         ) : (
-
-          <ChatMessages
-            messages={messages}
-            isLoading={isLoading}
-          />
-
+          <ChatMessages messages={messages} isLoading={isLoading} />
         )}
-
       </div>
-
-      {/* Bottom */}
 
       <ChatInput
         currentQuestion={currentQuestion}
@@ -171,8 +121,7 @@ function ChatArea({
         isLoading={isLoading}
         handleAskQuestion={handleAskQuestion}
       />
-
-    </div>
+    </main>
   );
 }
 

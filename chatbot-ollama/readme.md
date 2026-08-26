@@ -32,7 +32,7 @@ Make sure the following are installed:
 For the recommended local Ollama setup, pull these models:
 
 ```powershell
-ollama pull gemma3:4b
+ollama pull llama3.2:1b
 ollama pull nomic-embed-text
 ```
 

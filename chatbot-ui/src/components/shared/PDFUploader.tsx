@@ -82,7 +82,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
   return (
     <div>
 
-      <h2 className="mb-4 text-sm font-semibold text-white">
+      <h2 className={`${compact ? 'mb-2 text-xs' : 'mb-4 text-sm'} font-semibold text-white`}>
         Upload PDF
       </h2>
 
@@ -91,7 +91,7 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
-        className={`rounded-2xl bg-[#071a2d] p-6 border transition
+        className={`${compact ? 'rounded-xl p-3 bg-gradient-to-r from-[#6568F2] via-[#9293F5] to-[#E6E6FC]' : 'rounded-2xl p-6 bg-[#071a2d]'} border transition
         ${
           dragActive
             ? 'border-blue-500'
@@ -111,29 +111,29 @@ const PDFUploader: React.FC<PDFUploaderProps> = ({
         />
 
         {isUploading ? (
-          <div className="flex flex-col items-center py-8">
+          <div className={`flex flex-col items-center ${compact ? 'py-2' : 'py-8'}`}>
 
-            <Loader2 className="h-10 w-10 animate-spin text-blue-500 mb-4" />
+            <Loader2 className={`${compact ? 'mb-2 h-7 w-7' : 'mb-4 h-10 w-10'} animate-spin text-blue-500`} />
 
-            <p className="text-slate-300 text-sm">
+            <p className={`${compact ? 'text-[#172554]' : 'text-slate-300'} text-sm`}>
               Uploading...
             </p>
 
           </div>
         ) : (
-          <div className="flex flex-col items-center py-6">
+          <div className={`flex flex-col items-center ${compact ? 'py-1' : 'py-6'}`}>
 
-            <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-full bg-[#032e72]">
-              <Upload className="h-6 w-6 text-blue-500" />
+            <div className={`${compact ? 'mb-2 h-9 w-9' : 'mb-7 h-14 w-14'} flex items-center justify-center rounded-full bg-[#032e72]`}>
+              <Upload className={`${compact ? 'h-4 w-4' : 'h-6 w-6'} text-blue-500`} />
             </div>
 
-            <p className="text-center text-slate-300 text-sm leading-6">
+            <p className={`text-center ${compact ? 'text-[#172554]' : 'text-slate-300'} ${compact ? 'text-xs leading-4' : 'text-sm leading-6'}`}>
               Drop PDF here or click to browse
             </p>
 
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="mt-6 rounded-xl bg-blue-600 px-7 py-3 font-semibold text-white hover:bg-blue-500"
+              className={`${compact ? 'mt-2 rounded-lg px-4 py-1.5 text-xs' : 'mt-6 rounded-xl px-7 py-3'} bg-blue-600 font-semibold text-white hover:bg-blue-500`}
             >
               Browse
             </button>
