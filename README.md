@@ -44,8 +44,8 @@ The project is split into a frontend and backend. The frontend provides the user
 
 Detailed setup and run instructions are available inside each project folder:
 
-- [Backend Documentation](chatbot-ollama/readme.md)
-- [Frontend Documentation](chatbot-ui/README.md)
+- [Backend Documentation](chatbot-ollama/readme.txt)
+- [Frontend Documentation](chatbot-ui/readme.txt)
 
 ## Security Notes
 
